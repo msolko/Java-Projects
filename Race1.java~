@@ -1,0 +1,44 @@
+/**************************************************************************
+*                                Race 1                                   *
+*                                                                         *
+*   Programmed by Maxwell Solko (10-27-2017)                              *
+*   Class:  CS200                                                         *
+*   Instructor:  Chris Harris                                             *
+*                                                                         *
+*   Description:  This is an implementation of the basic concept of       *
+*                 animals running in a race.                              *
+*                                                                         *
+**************************************************************************/
+public class Race1
+{
+  public static void main(String[] args)
+  {
+    GenericAnimal speedy = new GenericAnimal("Speedy", "Tortoise", 4, 0, 0);
+    Hare thumper = new Hare("Thumper", "Hare", 11.1, 0, 0,
+                            40, 20, false);
+    GenericAnimal gary = new GenericAnimal("Gary", "Snail", .5, 0, 0);
+    Dog dug = new Dog("Dug", "Dog", 7.8, 0, 0,
+                      0, false);
+    double distanceLead;
+    double raceDistance = 1000;
+    int time = 0;
+    System.out.println("Based on the the animals: this race will take place.");
+    System.out.println("---------------------------------------------------------------------------------");
+    System.out.println("          Tortoise                   Hare                       Snail                      Dog");
+    System.out.println("time      position    speed          position    speed          position    speed          position    speed");
+    for(distanceLead=0; distanceLead<raceDistance; time++)
+    {
+      speedy.setCurrentPosition(speedy.getCurrentPosition()+speedy.getSpeed());
+      thumper.setCurrentPosition(thumper.getCurrentPosition()+thumper.getSpeed());
+      gary.setCurrentPosition(gary.getCurrentPosition()+gary.getSpeed());
+      dug.setCurrentPosition(dug.getCurrentPosition()+dug.getSpeed());
+      
+      distanceLead = Math.max(Math.max(speedy.getCurrentPosition(),thumper.getCurrentPosition()),Math.max(gary.getCurrentPosition(),dug.getCurrentPosition()));
+      System.out.printf("%-10s%-12s%-15s%-12s%-15s%-12s%-15s%-12s%-15s\n",time, 
+                        Math.round(speedy.getCurrentPosition()*100.0)/100.0, Math.round(speedy.getSpeed()*100.0)/100.0, 
+                        Math.round(thumper.getCurrentPosition()*100.0)/100.0, Math.round(thumper.getSpeed()*100.0)/100.0,
+                        Math.round(gary.getCurrentPosition()*100.0)/100.0, Math.round(gary.getSpeed()*100.0)/100.0,
+                        Math.round(dug.getCurrentPosition()*100.0)/100.0, Math.round(dug.getSpeed()*100.0)/100.0);
+    }
+  }
+}
